@@ -17,7 +17,7 @@ function decidido() {
   cardMain.classList.add("cardMain");
 
   //adiciona a decisão ao array de decisões
-  const indice = arrayDecisoes.length;
+  const indiceDecisao = arrayDecisoes.length;
   arrayDecisoes.push({
     titulo: texto,
     pros: [],
@@ -38,19 +38,28 @@ function decidido() {
   botaoPros.addEventListener("click", () => {
     const texto = inputPros.value.trim();
     if (texto === "") return;
-    const item = document.createElement("li");
-    const deleteButton = document.createElement("button");
-    deleteButton.textContent = "Excluir";
-    item.textContent = texto;
-    item.appendChild(deleteButton);
-    listaPros.appendChild(item);
+    arrayDecisoes[indiceDecisao].pros.push(texto);
     inputPros.value = "";
-    deleteButton.addEventListener("click", () => {
-      listaPros.removeChild(item);
-    });
-    arrayDecisoes[indice].pros.push(texto);
+    addPro();
     console.log(arrayDecisoes);
   });
+
+  //função para adicionar prós à lista
+  function addPro() {
+    listaPros.innerHTML = "";
+    arrayDecisoes[indiceDecisao].pros.forEach((pro, indexPro) => {
+      const item = document.createElement("li");
+      const deleteButton = document.createElement("button");
+      deleteButton.textContent = "Excluir";
+      item.textContent = pro;
+      item.appendChild(deleteButton);
+      listaPros.appendChild(item);
+      deleteButton.addEventListener("click", () => {
+        listaPros.removeChild(item);
+        arrayDecisoes[indiceDecisao].pros.splice(indexPro, 1);
+      });
+    });
+  }
 
   //variáveis da interface de contras
   const cons = document.createElement("h3");
@@ -66,19 +75,28 @@ function decidido() {
   botaoCons.addEventListener("click", () => {
     const texto = inputCons.value.trim();
     if (texto === "") return;
-    const item = document.createElement("li");
-    const deleteButton = document.createElement("button");
-    deleteButton.textContent = "Excluir";
-    item.textContent = texto;
-    item.appendChild(deleteButton);
-    listaCons.appendChild(item);
+    arrayDecisoes[indiceDecisao].cons.push(texto);
     inputCons.value = "";
-    deleteButton.addEventListener("click", () => {
-      listaCons.removeChild(item);
-    });
-    arrayDecisoes[indice].cons.push(texto);
+    addCon();
     console.log(arrayDecisoes);
   });
+
+  //função para adicionar contras à lista
+  function addCon() {
+    listaCons.innerHTML = "";
+    arrayDecisoes[indiceDecisao].cons.forEach((con, indexCons) => {
+      const item = document.createElement("li");
+      const deleteButton = document.createElement("button");
+      deleteButton.textContent = "Excluir";
+      item.textContent = con;
+      item.appendChild(deleteButton);
+      listaCons.appendChild(item);
+      deleteButton.addEventListener("click", () => {
+        listaCons.removeChild(item);
+        arrayDecisoes[indiceDecisao].cons.splice(indexCons, 1);
+      });
+    });
+  }
 
   //insere elementos no DOM e limpa input inicial
   cardPros.append(pros, inputPros, botaoPros, listaPros);
