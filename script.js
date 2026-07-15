@@ -2,7 +2,16 @@
 const inputDecisao = document.getElementById("inputDecisao");
 const listaDecisoes = document.getElementById("listaDecisoes");
 
-const arrayDecisoes = [];
+const salvo = localStorage.getItem("decisoes");
+let arrayDecisoes = [];
+
+if (salvo) {
+  arrayDecisoes = JSON.parse(salvo);
+}
+
+function salvar() {
+  localStorage.setItem("decisoes", JSON.stringify(arrayDecisoes));
+}
 
 //funcao principal
 function decidido() {
@@ -41,6 +50,7 @@ function decidido() {
     arrayDecisoes[indiceDecisao].pros.push(texto);
     inputPros.value = "";
     addPro();
+    salvar();
     console.log(arrayDecisoes);
   });
 
@@ -57,6 +67,8 @@ function decidido() {
       deleteButton.addEventListener("click", () => {
         listaPros.removeChild(item);
         arrayDecisoes[indiceDecisao].pros.splice(indexPro, 1);
+        salvar();
+        console.log(arrayDecisoes);
       });
     });
   }
@@ -78,6 +90,7 @@ function decidido() {
     arrayDecisoes[indiceDecisao].cons.push(texto);
     inputCons.value = "";
     addCon();
+    salvar();
     console.log(arrayDecisoes);
   });
 
@@ -94,6 +107,8 @@ function decidido() {
       deleteButton.addEventListener("click", () => {
         listaCons.removeChild(item);
         arrayDecisoes[indiceDecisao].cons.splice(indexCons, 1);
+        salvar();
+        console.log(arrayDecisoes);
       });
     });
   }
@@ -105,4 +120,5 @@ function decidido() {
   listaDecisoes.append(titulo, cardMain);
 
   inputDecisao.value = "";
+  salvar();
 }
