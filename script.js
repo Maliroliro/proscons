@@ -17,16 +17,14 @@ function salvar() {
 
 //renderiza a tela com as decisões
 function renderizarTela() {
-
   listaDecisoes.innerHTML = "";
   arrayDecisoes.forEach((decisao, indiceDecisao) => {
-
     //variáveis da interface de decisão
     const cardMain = document.createElement("div");
     const cardPros = document.createElement("div");
     const cardCons = document.createElement("div");
     const tituloDecisao = document.createElement("h2");
-    const listas = document.createElement("div");
+    const listasProscons = document.createElement("div");
 
     //variaveis da interface de prós
     const tituloPros = document.createElement("h3");
@@ -41,7 +39,7 @@ function renderizarTela() {
     const botaoCons = document.createElement("button");
 
     //funcionalidade da interface de prós
-    listaPros.classList.add("listaPros");
+    listaPros.classList.add("lista-pros", "lista-items");
     tituloPros.textContent = "Prós";
     inputPros.type = "text";
     botaoPros.textContent = "+ Pró";
@@ -51,7 +49,7 @@ function renderizarTela() {
     });
 
     //funcionalidade da interface de contras
-    listaCons.classList.add("listaCons");
+    listaCons.classList.add("lista-cons", "lista-items");
     tituloCons.textContent = "Contras";
     inputCons.type = "text";
     botaoCons.textContent = "+ Contra";
@@ -88,15 +86,18 @@ function renderizarTela() {
 
     //adiciona classes e conteúdo aos elementos
     tituloDecisao.textContent = decisao.titulo;
-    tituloPros.classList.add("tituloPros");
-    tituloCons.classList.add("tituloCons");
-    cardMain.classList.add("cardMain");
+    listasProscons.classList.add("listas-proscons");
+    tituloDecisao.classList.add("titulo-decisao");
+    tituloPros.classList.add("titulo-pros");
+    tituloCons.classList.add("titulo-cons");
+    cardMain.classList.add("card-main");
 
     //insere elementos no DOM
-    cardPros.append(tituloPros, inputPros, botaoPros, listaPros);
-    cardCons.append(tituloCons, inputCons, botaoCons, listaCons);
-    cardMain.append(cardPros, cardCons);
-    listaDecisoes.append(tituloDecisao, cardMain);
+    cardPros.append(tituloPros, listaPros, inputPros, botaoPros);
+    cardCons.append(tituloCons, listaCons, inputCons, botaoCons);
+    listasProscons.append(cardPros, cardCons);
+    cardMain.append(tituloDecisao, listasProscons);
+    listaDecisoes.append(cardMain);
   });
 }
 
@@ -139,7 +140,7 @@ function criarDecisao() {
     cons: [],
   });
 
-  //salva e renderiza a tela
+  //salva e renderiza a tela e apaga o input
   salvar();
   renderizarTela();
   inputDecisao.value = "";

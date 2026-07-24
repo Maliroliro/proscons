@@ -3,21 +3,37 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>proscons</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <!-- Tela inicial do App -->
-    <h1 id="title">Em qual decisão está pensando hoje?</h1>
+    <div class="container">
+      <div class="painel-criacao">
+        <h1 id="title" class="titulo-main">
+          Em qual decisão está pensando hoje?
+        </h1>
 
-    <button onclick="renderizarTela()">Atualizar Tela</button>
+        <div class="formulario">
+          <button onclick="renderizarTela()">Atualizar Tela</button>
 
-    <input id="inputDecisao" type="text" />
+          <input id="inputDecisao" type="text" />
 
-    <button onclick="criarDecisao()">PROSCONS!</button>
+          <button onclick="criarDecisao()">PROSCONS!</button>
+        </div>
+      </div>
 
-    <div id="listaDecisoes"></div>
+      <div id="listaDecisoes"></div>
 
-    <script src="script.js"></script>
+      <script src="script.js"></script>
+    </div>
   </body>
 </html>

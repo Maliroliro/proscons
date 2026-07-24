@@ -1,4 +1,46 @@
-.cardMain{
-display: flex;
-gap: 20px;
+body {
+  font-family: "Inter", sans-serif;
+  background-color: #f5f5f5;
+  margin: 0;
+}
+
+.container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.painel-criacao {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.formulario {
+  display: flex;
+  gap: 10px;
+}
+
+.card-main {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.listas-proscons {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  gap: 40px;
+}
+
+.lista-items {
+  min-height: 150px;
+  margin: 0;
+  padding: 0;
+ }
+
+.titulo-decisao {
+  text-align: center;
 }
